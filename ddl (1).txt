@@ -1,0 +1,68 @@
+-- creating Database
+create database MLP335;
+
+-- using the Database
+use MLP335;
+
+-- Creating Menu table 
+CREATE TABLE MENU
+(
+FOOD_ID INT PRIMARY KEY,
+ITEM_NAME VARCHAR(40),
+FOOD_PRICE FLOAT
+);
+
+
+
+-- Creating Customer table
+CREATE TABLE CUSTOMER
+(
+CUS_ID INT PRIMARY KEY,
+CUS_NAME VARCHAR(50),
+CUS_PHN int,
+CUS_ADD VARCHAR(100),
+CUS_EMAIL VARCHAR(50) UNIQUE
+);
+
+-- Creating Orders table
+CREATE TABLE ORDERS
+(
+ORD_ID INT,
+ORD_DATE DATE,
+FOOD_ID INT,
+CUS_ID INT,
+PRICE FLOAT,
+FOREIGN KEY(FOOD_ID) REFERENCES MENU(FOOD_ID),
+FOREIGN KEY(CUS_ID) REFERENCES CUSTOMER(CUS_ID)
+);
+
+
+-- Creating Vendor table
+CREATE TABLE VENDOR
+(
+VEN_ID INT PRIMARY KEY,
+VEN_NAME VARCHAR(50),
+CUS_ID INT,
+FOREIGN KEY(CUS_ID) REFERENCES CUSTOMER(CUS_ID)
+);
+INSERT INTO MENU VALUES(1,'IDLY',120),
+(2,'DOSA',300),
+(3,'PURI',231),
+(4,'CHAPATHI',199);
+INSERT INTO customer VALUES(12,'abc',120,'bharth','abc@gmail.com');
+
+
+
+
+INSERT INTO `mlp335`.`customer` (`CUS_ID`, `CUS_NAME`, `CUS_PHN`, `CUS_ADD`, `CUS_EMAIL`) VALUES ('10', 'def', '240', 'us', 'def@gmail.com');
+INSERT INTO `mlp335`.`customer` (`CUS_ID`, `CUS_NAME`, `CUS_PHN`, `CUS_ADD`, `CUS_EMAIL`) VALUES ('2', 'ghi', '480', 'uk', 'ghi@gmail.com');
+INSERT INTO `mlp335`.`customer` (`CUS_ID`, `CUS_NAME`, `CUS_PHN`, `CUS_ADD`, `CUS_EMAIL`) VALUES ('1', 'jkl', '546', 'aus', 'jkl@gmail.com');
+
+INSERT INTO `mlp335`.`orders` (`ORD_ID`, `ORD_DATE`, `FOOD_ID`, `CUS_ID`, `PRICE`) VALUES ('1', '2021-03-20', '1', '12', '120');
+INSERT INTO `mlp335`.`orders` (`ORD_ID`, `ORD_DATE`, `FOOD_ID`, `CUS_ID`, `PRICE`) VALUES ('2', '2021-03-21', '2', '1', '300');
+INSERT INTO `mlp335`.`orders` (`ORD_ID`, `ORD_DATE`, `FOOD_ID`, `CUS_ID`, `PRICE`) VALUES ('3', '2021-03-22', '3', '2', '231');
+
+
+INSERT INTO `mlp335`.`vendor` (`VEN_ID`, `VEN_NAME`, `CUS_ID`) VALUES ('1', 'XYZ', '1');
+INSERT INTO `mlp335`.`vendor` (`VEN_ID`, `VEN_NAME`, `CUS_ID`) VALUES ('3', 'STU', '10');
+INSERT INTO `mlp335`.`vendor` (`VEN_ID`, `VEN_NAME`, `CUS_ID`) VALUES ('2', 'UVW', '12');
